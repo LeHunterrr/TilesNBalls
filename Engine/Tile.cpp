@@ -6,5 +6,16 @@ rect(rekt),
 c(_c){}
 
 void Tile::Draw( Graphics & gfx ) const {
-	gfx.DrawRect( rect, c );
+	if( !isDestroyed ) {
+		gfx.DrawRect( rect, c );
+	}
+}
+
+bool Tile::isCollidingWithBall( Ball & ball ) {
+	if( !isDestroyed && ball.GetRect().isCollidingWithRect( GetRect() ) ) {
+		ball.ChangeY();
+		isDestroyed = true;
+		return true;
+	} 
+	return false;
 }
