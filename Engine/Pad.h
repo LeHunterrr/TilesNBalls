@@ -13,7 +13,7 @@ public:
 	bool IsCollidingWithWall( const RectF& walls );
 	bool IsCOllidingWithBall( Ball& ball ) const;
 private:
-	static constexpr float speed = 40.0f;
+	static constexpr float speed = 200.0f;
 	Color c = Colors::Blue;
 	Vec2 pos;
 	float height;
