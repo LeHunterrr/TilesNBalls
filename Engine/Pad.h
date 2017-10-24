@@ -14,7 +14,9 @@ public:
 	bool IsCOllidingWithBall( Ball& ball ) const;
 private:
 	static constexpr float speed = 200.0f;
+	static constexpr int secondaryPixels = 20;
 	Color c = Colors::Blue;
+	Color secondary = Colors::Red;
 	Vec2 pos;
 	float height;
 	float width;

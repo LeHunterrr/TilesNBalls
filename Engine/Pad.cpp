@@ -6,7 +6,8 @@ Pad::Pad( const Vec2 & vec1, float _width, float _height ) :
 	width( _width ) {}
 
 void Pad::Draw( Graphics & gfx ) const {
-	gfx.DrawRect( RectF( pos, width, height ), c );
+	gfx.DrawRect( RectF( pos, width, height ), secondary );
+	gfx.DrawRect( RectF( {pos.x + secondaryPixels, pos.y}, width - secondaryPixels * 2, height ), c );
 }
 
 void Pad::Update( const Keyboard & kbd, float dt ) {
