@@ -26,6 +26,8 @@
 #include "Ball.h"
 #include "FrameTimer.h"
 #include "Sound.h"
+#include "Pad.h"
+#include "Tile.h"
 
 class Game
 {
@@ -46,8 +48,15 @@ private:
 	/********************************/
 	/*  User Variables              */
 	Ball b;
+	Pad p;
 	RectF border;
 	FrameTimer timer;
 	Sound soundPlayer;
+	static constexpr float tilesWidth = 40.0f;
+	static constexpr float tilesHeight = 20.0f;
+	static constexpr int numTilesWidth = 18;
+	static constexpr int numTilesHeight = 5;
+	static constexpr int numTiles = numTilesHeight * numTilesWidth;
+	Tile tiles[ numTiles ];
 	/********************************/
 };
