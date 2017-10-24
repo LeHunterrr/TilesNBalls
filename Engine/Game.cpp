@@ -28,7 +28,8 @@ Game::Game( MainWindow& wnd )
 	gfx( wnd ),
 	b( { 100.0f, 400.0f }, { 200.0f, 200.0f }, Colors::Green ),
 	border( 0, Graphics::ScreenWidth, 0, Graphics::ScreenHeight ),
-	soundPlayer( L"Sounds\\arkbrick.wav", false ),
+	soundPad( L"Sounds\\arkpad.wav", false ),
+	soundTile( L"Sounds\\arkbrick.wav", false ),
 	p( { 100.0f, 550.0f }, 100.0f, 25.0f ) {
 
 	Vec2 start = { 0.0f, 0.0f };
@@ -54,11 +55,12 @@ void Game::UpdateModel() {
 	p.Update( wnd.kbd, dt );
 
 	if( p.IsCOllidingWithBall( b ) ) {
-		soundPlayer.Play();
+		soundPad.Play();
 	}
 
 	for( Tile t : tiles ) {
 		if( t.isCollidingWithBall( b ) ) {
+			soundTile.Play();
 			break;
 		}
 	}

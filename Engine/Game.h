@@ -51,7 +51,8 @@ private:
 	Pad p;
 	RectF border;
 	FrameTimer timer;
-	Sound soundPlayer;
+	Sound soundPad;
+	Sound soundTile;
 	static constexpr float tilesWidth = 40.0f;
 	static constexpr float tilesHeight = 20.0f;
 	static constexpr int numTilesWidth = 18;
