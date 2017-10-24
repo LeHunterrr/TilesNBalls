@@ -65,8 +65,8 @@ void Game::UpdateModel() {
 	for( int i = 0; i < numTiles; i++ ) {
 		Tile& t = tiles[ i ];
 		if( t.isCollidingWithBall( b ) ) {
-			float distance = (t.GetRect().GetCenter() - b.GetRect().GetCenter()).GetLengthSq();
-			if( distance < closestDistance ) {
+			const float distance = (t.GetRect().GetCenter() - b.GetRect().GetCenter()).GetLengthSq();
+			if( distance < closestDistance || index == -1) {
 				closestDistance = distance;
 				index = i;
 			}

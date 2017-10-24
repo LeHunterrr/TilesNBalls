@@ -24,11 +24,11 @@ bool Tile::isCollidingWithBall( Ball & ball ) {
 void Tile::CollideWithBall( Ball & ball ) {
 	assert( !isDestroyed && ball.GetRect().isCollidingWithRect( GetRect() ) );
 	
-	Vec2 center = ball.GetRect().GetCenter();
-	if( center.x <= rect.left || center.x >= rect.right ) {
-		ball.ChangeX();
-	} else {
+	const Vec2 center = ball.GetRect().GetCenter();
+	if( center.x >= rect.left && center.x <= rect.right ) {
 		ball.ChangeY();
+	} else {
+		ball.ChangeX();
 	}
 	isDestroyed = true;
 }
