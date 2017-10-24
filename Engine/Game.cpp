@@ -1,5 +1,5 @@
-/****************************************************************************************** 
- *	Chili DirectX Framework Version 16.07.20											  *	
+/******************************************************************************************
+ *	Chili DirectX Framework Version 16.07.20											  *
  *	Game.cpp																			  *
  *	Copyright 2016 PlanetChili.net <http://www.planetchili.net>							  *
  *																						  *
@@ -20,26 +20,28 @@
  ******************************************************************************************/
 #include "MainWindow.h"
 #include "Game.h"
+#include "Tile.h"
+#include "FrameTimer.h"
 
 Game::Game( MainWindow& wnd )
 	:
 	wnd( wnd ),
-	gfx( wnd )
-{
-}
+	gfx( wnd ),
+	b( { 100.0f, 100.0f }, {200.0f, 200.0f}, Colors::Green ),
+	border( 0, Graphics::ScreenWidth, 0, Graphics::ScreenHeight ) {}
 
-void Game::Go()
-{
-	gfx.BeginFrame();	
+void Game::Go() {
+	gfx.BeginFrame();
 	UpdateModel();
 	ComposeFrame();
 	gfx.EndFrame();
 }
 
-void Game::UpdateModel()
-{
-}
+void Game::UpdateModel() {}
 
-void Game::ComposeFrame()
-{
+void Game::ComposeFrame() {
+	float dt = timer.Mark();
+	b.Update( dt );
+	b.IsCollidingWithWall( border );
+	b.Draw( gfx );
 }
