@@ -10,6 +10,7 @@ public:
 	void Update( float dt );
 	void Draw( Graphics& gfx ) const;
 	bool IsCollidingWithWall(const RectF& walls);
+	RectF GetRect();
 private:
 	void ChangeX();
 	void ChangeY();

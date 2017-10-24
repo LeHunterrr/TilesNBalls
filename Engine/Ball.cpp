@@ -39,6 +39,10 @@ bool Ball::IsCollidingWithWall( const RectF & walls ) {
 	return isColliding;
 }
 
+RectF Ball::GetRect() {
+	return RectF( { pos.x - radius, pos.y - radius }, {pos.x + radius, pos.y + radius} );
+}
+
 void Ball::ChangeX() {
 	move.x *= -1;
 }
