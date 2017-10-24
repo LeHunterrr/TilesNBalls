@@ -11,6 +11,7 @@ public:
 	void Draw( Graphics& gfx ) const;
 	void DrawWithPadding( float pixels, Graphics& gfx ) const;
 	bool isCollidingWithBall( Ball& ball );
+	void CollideWithBall( Ball& ball );
 	RectF& GetRect() { return rect; };
 private:
 	RectF rect;

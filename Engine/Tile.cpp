@@ -1,5 +1,5 @@
 #include "Tile.h"
-
+#include <assert.h>
 
 Tile::Tile( const RectF & rekt, Color _c ) :
 	rect( rekt ),
@@ -18,15 +18,18 @@ void Tile::DrawWithPadding( float pixels, Graphics & gfx ) const {
 }
 
 bool Tile::isCollidingWithBall( Ball & ball ) {
-	if( !isDestroyed && ball.GetRect().isCollidingWithRect( GetRect() ) ) {
-		Vec2 center = ball.GetRect().GetCenter();
-		if( center.x >= rect.left && center.x <= rect.right ) {
-			ball.ChangeX();
-		} else {
-			ball.ChangeY();
-		}
-		isDestroyed = true;
-		return true;
-	} 
-	return false;
+	return !isDestroyed && ball.GetRect().isCollidingWithRect( GetRect() );
 }
+
+void Tile::CollideWithBall( Ball & ball ) {
+	assert( !isDestroyed && ball.GetRect().isCollidingWithRect( GetRect() ) );
+	
+	Vec2 center = ball.GetRect().GetCenter();
+	if( center.x <= rect.left || center.x >= rect.right ) {
+		ball.ChangeX();
+	} else {
+		ball.ChangeY();
+	}
+	isDestroyed = true;
+}
+

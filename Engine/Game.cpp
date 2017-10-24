@@ -59,11 +59,22 @@ void Game::UpdateModel() {
 		soundPad.Play();
 	}
 
-	for( Tile& t : tiles ) {
+	float closestDistance = 100.0f;
+	int index = -1;
+
+	for( int i = 0; i < numTiles; i++ ) {
+		Tile& t = tiles[ i ];
 		if( t.isCollidingWithBall( b ) ) {
-			soundTile.Play();
-			break;
+			float distance = (t.GetRect().GetCenter() - b.GetRect().GetCenter()).GetLengthSq();
+			if( distance < closestDistance ) {
+				closestDistance = distance;
+				index = i;
+			}
 		}
+	}
+	if( index != -1 ) {
+		soundTile.Play();
+		tiles[ index ].CollideWithBall( b );
 	}
 
 	if( b.IsCollidingWithWall( border ) ) {
