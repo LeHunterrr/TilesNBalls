@@ -28,7 +28,8 @@ Game::Game( MainWindow& wnd )
 	wnd( wnd ),
 	gfx( wnd ),
 	b( { 100.0f, 100.0f }, {200.0f, 200.0f}, Colors::Green ),
-	border( 0, Graphics::ScreenWidth, 0, Graphics::ScreenHeight ) {}
+	border( 0, Graphics::ScreenWidth, 0, Graphics::ScreenHeight ),
+	soundPlayer(L"Sounds\\arkbrick.wav", false) {}
 
 void Game::Go() {
 	gfx.BeginFrame();
@@ -42,6 +43,8 @@ void Game::UpdateModel() {}
 void Game::ComposeFrame() {
 	float dt = timer.Mark();
 	b.Update( dt );
-	b.IsCollidingWithWall( border );
+	if( b.IsCollidingWithWall( border ) ) {
+		soundPlayer.Play();
+	}
 	b.Draw( gfx );
 }
