@@ -14,5 +14,5 @@ RectF::RectF( const Vec2& topLeft, float width, float height ) :
 
 bool RectF::isCollidingWithRect( const RectF & other ) const {
 	return right > other.left && left < other.right
-		&& top < bottom && bottom > other.top;
+		&& top < other.bottom && bottom > other.top;
 }
