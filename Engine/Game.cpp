@@ -32,7 +32,7 @@ Game::Game( MainWindow& wnd )
 	soundTile( L"Sounds\\arkbrick.wav", false ),
 	p( { 100.0f, 550.0f }, 100.0f, 25.0f ) {
 
-	Vec2 start = { 0.0f, 0.0f };
+	Vec2 start = { 40.0f, 50.0f };
 	Color c[ numTilesHeight ] = { Colors::Cyan, Colors::Gray, Colors::LightGray, Colors::Yellow, Colors::Red };
 	for( int y = 0; y < numTilesHeight; y++ ) {
 		Color tileColor = c[ y ];
