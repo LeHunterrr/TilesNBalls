@@ -54,11 +54,12 @@ void Game::UpdateModel() {
 	b.Update( dt );
 	p.Update( wnd.kbd, dt );
 
+	p.IsCollidingWithWall( border );
 	if( p.IsCOllidingWithBall( b ) ) {
 		soundPad.Play();
 	}
 
-	for( Tile t : tiles ) {
+	for( Tile& t : tiles ) {
 		if( t.isCollidingWithBall( b ) ) {
 			soundTile.Play();
 			break;
@@ -74,7 +75,7 @@ void Game::ComposeFrame() {
 	
 	b.Draw( gfx );
 	p.Draw( gfx );
-	for( const Tile t : tiles ) {
-		t.Draw(gfx);
+	for( const Tile& t : tiles ) {
+		t.DrawWithPadding(2, gfx);
 	}
 }
