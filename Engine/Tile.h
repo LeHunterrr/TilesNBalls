@@ -5,6 +5,7 @@
 
 class Tile {
 public:
+	Tile() = default;
 	Tile( const RectF& rekt, Color _c );
 	void Draw( Graphics& gfx ) const;
 private:
