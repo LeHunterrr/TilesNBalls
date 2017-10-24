@@ -8,6 +8,7 @@ public:
 	RectF( const Vec2& topLeft, const Vec2& bottomRight );
 	RectF( const Vec2& topLeft, float width, float height );
 	bool isCollidingWithRect( const RectF& other ) const;
+	Vec2 GetCenter() const;
 public:
 	float left;
 	float right;
