@@ -11,7 +11,6 @@ public:
 	void Draw( Graphics& gfx ) const;
 	bool IsCollidingWithWall(const RectF& walls);
 	RectF GetRect();
-private:
 	void ChangeX();
 	void ChangeY();
 private:
