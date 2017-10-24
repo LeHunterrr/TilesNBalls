@@ -11,6 +11,12 @@ void Tile::Draw( Graphics & gfx ) const {
 	}
 }
 
+void Tile::DrawWithPadding( float pixels, Graphics & gfx ) const {
+	if( !isDestroyed ) {
+		gfx.DrawRect( RectF(rect.left + pixels, rect.right - pixels, rect.top + pixels, rect.bottom - pixels), c );
+	}
+}
+
 bool Tile::isCollidingWithBall( Ball & ball ) {
 	if( !isDestroyed && ball.GetRect().isCollidingWithRect( GetRect() ) ) {
 		ball.ChangeY();
