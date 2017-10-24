@@ -19,7 +19,12 @@ void Tile::DrawWithPadding( float pixels, Graphics & gfx ) const {
 
 bool Tile::isCollidingWithBall( Ball & ball ) {
 	if( !isDestroyed && ball.GetRect().isCollidingWithRect( GetRect() ) ) {
-		ball.ChangeY();
+		Vec2 center = ball.GetRect().GetCenter();
+		if( center.x >= rect.left && center.x <= rect.right ) {
+			ball.ChangeX();
+		} else {
+			ball.ChangeY();
+		}
 		isDestroyed = true;
 		return true;
 	} 
