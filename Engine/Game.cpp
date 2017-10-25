@@ -89,6 +89,7 @@ void Game::UpdateModel(float dt) {
 		p.ResetCooldown();
 		if( collision == 2 ) {
 			lives--;
+			fart.Play();
 		}
 	}
 }
