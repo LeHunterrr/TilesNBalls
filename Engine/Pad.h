@@ -22,6 +22,5 @@ private:
 	Vec2 pos;
 	float height;
 	float width;
-	RectF rect;
 	bool Cooldown = false;
 };
