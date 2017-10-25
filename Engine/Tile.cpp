@@ -25,7 +25,10 @@ void Tile::CollideWithBall( Ball & ball ) {
 	assert( !isDestroyed && ball.GetRect().isCollidingWithRect( GetRect() ) );
 	
 	const Vec2 center = ball.GetRect().GetCenter();
-	if( center.x >= rect.left && center.x <= rect.right ) {
+	if( std::signbit( ball.GetVelocity().x ) == signbit( ( ball.GetRect().GetCenter() - rect.GetCenter() ).x ) ) {
+		ball.ChangeY();
+	}  
+	else if( center.x >= rect.left && center.x <= rect.right ) {
 		ball.ChangeY();
 	} else {
 		ball.ChangeX();
