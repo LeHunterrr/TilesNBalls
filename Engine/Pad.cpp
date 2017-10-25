@@ -41,9 +41,10 @@ bool Pad::IsCOllidingWithBall( Ball & ball ) {
 	RectF rect(pos, width, height);
 	if(!Cooldown && rect.isCollidingWithRect( ball.GetRect() ) ) {
 		const Vec2 center = ball.GetRect().GetCenter();
-		if( std::signbit( ball.GetVelocity().x ) == signbit( ( ball.GetRect().GetCenter() - rect.GetCenter() ).x ) ||
+		Vec2 distanceCenterToBall = center - rect.GetCenter();
+		if( std::signbit( ball.GetVelocity().x ) == signbit( distanceCenterToBall.x ) ||
 			center.x >= rect.left && center.x <= rect.right ) {
-			ball.ChangeY();
+			ball.SetVelocity( { distanceCenterToBall.x, -40 } );
 		} else {
 			ball.ChangeX();
 		}
