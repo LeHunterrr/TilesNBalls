@@ -22,17 +22,8 @@ private:
 	static constexpr Color color = { 200,220,200 };
 	static constexpr float wingWidth = 6.0f;
 	static constexpr float speed = 360.0f;
-	// control the paddle rebound behavior here
-	static constexpr float maximumExitRatio = 2.6f;
-	static constexpr float fixedZoneWidthRatio = 0.2f;
-	// ----------------------------------------
 	float halfWidth;
 	float halfHeight;
-	// these are derived from above controls
-	float exitXFactor;
-	float fixedZoneHalfWidth;
-	float fixedZoneExitX;
-	// -------------------------------------
 	Vec2 pos;
 	bool isCooldown = false;
 };

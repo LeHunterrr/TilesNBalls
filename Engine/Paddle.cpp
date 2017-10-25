@@ -4,10 +4,7 @@ Paddle::Paddle( const Vec2 & pos_in,float halfWidth_in,float halfHeight_in )
 	:
 	pos( pos_in ),
 	halfWidth( halfWidth_in ),
-	halfHeight( halfHeight_in ),
-	exitXFactor( maximumExitRatio / halfWidth ),
-	fixedZoneHalfWidth( halfWidth * fixedZoneWidthRatio ),
-	fixedZoneExitX( fixedZoneHalfWidth * exitXFactor )
+	halfHeight( halfHeight_in )
 {
 }
 
@@ -22,43 +19,20 @@ void Paddle::Draw( Graphics & gfx ) const
 
 bool Paddle::DoBallCollision( Ball & ball )
 {
-	if( !isCooldown )
-	{
-		const RectF rect = GetRect();
-		if( rect.IsOverlappingWith( ball.GetRect() ) )
-		{
-			const Vec2 ballPos = ball.GetPosition();
-			if( std::signbit( ball.GetVelocity().x ) == std::signbit( (ballPos - pos).x )
-				|| ( ballPos.x >= rect.left && ballPos.x <= rect.right ) )
-			{
-				Vec2 dir;
-				const float xDifference = ballPos.x - pos.x;
-				if( std::abs( xDifference ) < fixedZoneHalfWidth )
-				{
-					if( xDifference < 0.0f )
-					{
-						dir = Vec2( -fixedZoneExitX,-1.0f );
-					}
-					else
-					{
-						dir = Vec2( fixedZoneExitX,-1.0f );
-					}
-				}
-				else
-				{
-					dir = Vec2( xDifference * exitXFactor,-1.0f );
-				}
-				ball.SetDirection( dir );
-			}
-			else
-			{
-				ball.ReboundX();
-			}
-			isCooldown = true;
-			return true;
+	RectF rect = GetRect();
+	if( !isCooldown && rect.IsOverlappingWith( ball.GetRect() ) ) {
+		const Vec2 center = ball.GetRect().GetCenter();
+		Vec2 distanceCenterToBall = center - rect.GetCenter();
+		if( std::signbit( ball.GetVelocity().x ) == signbit( distanceCenterToBall.x ) ||
+			center.x >= rect.left && center.x <= rect.right ) {
+			ball.SetDirection( { distanceCenterToBall.x, -30 } );
+		} else {
+			ball.ReboundX();
 		}
+		isCooldown = true;
+		return true;
 	}
-	return false;	
+	return false;
 }
 
 void Paddle::DoWallCollision( const RectF & walls )
