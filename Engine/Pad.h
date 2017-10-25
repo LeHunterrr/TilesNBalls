@@ -11,8 +11,9 @@ public:
 	Pad( const Vec2& vec1, float width, float height);
 	void Draw( Graphics& gfx ) const;
 	void Update( const Keyboard& kbd, float dt );
+	void ResetCooldown();
 	bool IsCollidingWithWall( const RectF& walls );
-	bool IsCOllidingWithBall( Ball& ball ) const;
+	bool IsCOllidingWithBall( Ball& ball );
 private:
 	static constexpr float speed = 200.0f;
 	static constexpr int secondaryPixels = 20;
@@ -22,4 +23,5 @@ private:
 	RectF rect;
 	float height;
 	float width;
+	bool Cooldown = false;
 };

@@ -21,6 +21,10 @@ void Pad::Update( const Keyboard & kbd, float dt ) {
 	}
 }
 
+void Pad::ResetCooldown() {
+	Cooldown = false;
+}
+
 bool Pad::IsCollidingWithWall( const RectF & walls ) {
 	bool isColliding = false;
 
@@ -35,21 +39,18 @@ bool Pad::IsCollidingWithWall( const RectF & walls ) {
 	return isColliding;
 }
 
-bool Pad::IsCOllidingWithBall( Ball & ball ) const {
-	bool isColliding = false;
-	
-	if( rect.isCollidingWithRect( ball.GetRect() ) ) {
+bool Pad::IsCOllidingWithBall( Ball & ball ) {
+	if(!Cooldown && rect.isCollidingWithRect( ball.GetRect() ) ) {
 		const Vec2 center = ball.GetRect().GetCenter();
 		if( std::signbit( ball.GetVelocity().x ) == signbit( ( ball.GetRect().GetCenter() - rect.GetCenter() ).x ) ) {
 			ball.ChangeY();
-			isColliding = true;
 		} else if( center.x >= rect.left && center.x <= rect.right ) {
 			ball.ChangeY();
-			isColliding = true;
 		} else {
 			ball.ChangeX();
-			isColliding = true;
 		}
+		Cooldown = true;
+		return true;
 	}
-	return isColliding;
+	return false;
 }
