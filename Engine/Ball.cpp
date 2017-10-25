@@ -2,8 +2,9 @@
 
 Ball::Ball( const Vec2 & position, const Vec2 & movement, Color color ) :
 	pos( position ),
-	move( movement ),
-	c( color ) {}
+	c( color ) {
+	SetVelocity( movement );
+}
 
 void Ball::Update( float dt ) {
 	pos += move * dt;
@@ -49,6 +50,10 @@ void Ball::ChangeX() {
 
 void Ball::ChangeY() {
 	move.y *= -1;
+}
+
+void Ball::SetVelocity( Vec2 velocity ) {
+	move = velocity.Normalize() * speed;
 }
 
 Vec2 Ball::GetVelocity() const {
