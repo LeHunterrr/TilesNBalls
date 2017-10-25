@@ -40,7 +40,6 @@ bool Pad::IsCollidingWithWall( const RectF & walls ) {
 }
 
 bool Pad::IsCOllidingWithBall( Ball & ball ) {
-	RectF rect( pos, width, height );
 	if(!Cooldown && rect.isCollidingWithRect( ball.GetRect() ) ) {
 		const Vec2 center = ball.GetRect().GetCenter();
 		if( std::signbit( ball.GetVelocity().x ) == signbit( ( ball.GetRect().GetCenter() - rect.GetCenter() ).x ) ) {
