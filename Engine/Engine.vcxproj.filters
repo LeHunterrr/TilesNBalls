@@ -151,5 +151,8 @@
     <Media Include="Sounds\arkbrick.wav">
       <Filter>Sounds</Filter>
     </Media>
+    <Media Include="..\..\poo_game\Engine\Sounds\fart2.wav">
+      <Filter>Sounds</Filter>
+    </Media>
   </ItemGroup>
 </Project>

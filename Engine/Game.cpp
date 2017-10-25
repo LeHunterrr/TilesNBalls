@@ -30,6 +30,7 @@ Game::Game( MainWindow& wnd )
 	border( 0, Graphics::ScreenWidth, 0, Graphics::ScreenHeight ),
 	soundPad( L"Sounds\\arkpad.wav", false ),
 	soundTile( L"Sounds\\arkbrick.wav", false ),
+	fart( L"Sounds\\fart2.wav", false ),
 	p( { 100.0f, 550.0f }, 100.0f, 25.0f ) {
 
 	Vec2 start = { 40.0f, 50.0f };
@@ -82,9 +83,13 @@ void Game::UpdateModel(float dt) {
 		tiles[ index ].CollideWithBall( b );
 		p.ResetCooldown();
 	}
-
-	if( b.IsCollidingWithWall( border ) ) {
+	//0 = no collision, 1 = collision, 2 = bottom wall
+	int collision = b.IsCollidingWithWall( border );
+	if( collision != 0 ) {
 		p.ResetCooldown();
+		if( collision == 2 ) {
+			lives--;
+		}
 	}
 }
 

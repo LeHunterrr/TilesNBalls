@@ -53,11 +53,13 @@ private:
 	FrameTimer timer;
 	Sound soundPad;
 	Sound soundTile;
+	Sound fart;
 	static constexpr float tilesWidth = 40.0f;
 	static constexpr float tilesHeight = 20.0f;
 	static constexpr int numTilesWidth = 18;
 	static constexpr int numTilesHeight = 5;
 	static constexpr int numTiles = numTilesHeight * numTilesWidth;
 	Tile tiles[ numTiles ];
+	int lives = 3;
 	/********************************/
 };

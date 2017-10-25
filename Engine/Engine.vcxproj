@@ -242,6 +242,7 @@
     <Image Include="Chili.ico" />
   </ItemGroup>
   <ItemGroup>
+    <Media Include="..\..\poo_game\Engine\Sounds\fart2.wav" />
     <Media Include="Sounds\arkbrick.wav" />
     <Media Include="Sounds\arkpad.wav" />
   </ItemGroup>
