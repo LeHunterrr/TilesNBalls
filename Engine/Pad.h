@@ -15,13 +15,13 @@ public:
 	bool IsCollidingWithWall( const RectF& walls );
 	bool IsCOllidingWithBall( Ball& ball );
 private:
-	static constexpr float speed = 200.0f;
+	static constexpr float speed = 300.0f;
 	static constexpr int secondaryPixels = 20;
 	Color c = Colors::Blue;
 	Color secondary = Colors::Red;
 	Vec2 pos;
-	RectF rect;
 	float height;
 	float width;
+	RectF rect;
 	bool Cooldown = false;
 };
