@@ -46,7 +46,7 @@ Game::Game( MainWindow& wnd )
 void Game::Go() {
 	gfx.BeginFrame();
 	float timeElapsed = timer.Mark();
-	while( timeElapsed > 0.0f ) {
+	while( timeElapsed > 0.0f && !gameOver) {
 		const float dt = std::min( 0.0025f, timeElapsed );
 		UpdateModel(dt);
 		timeElapsed -= dt;
@@ -90,6 +90,9 @@ void Game::UpdateModel(float dt) {
 		if( collision == 2 ) {
 			lives--;
 			fart.Play();
+			if( lives == 0 ) {
+				gameOver = true;
+			}
 		}
 	}
 }

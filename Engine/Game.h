@@ -61,5 +61,6 @@ private:
 	static constexpr int numTiles = numTilesHeight * numTilesWidth;
 	Tile tiles[ numTiles ];
 	int lives = 3;
+	bool gameOver = false;
 	/********************************/
 };
