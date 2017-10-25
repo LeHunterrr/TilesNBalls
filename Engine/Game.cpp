@@ -21,6 +21,7 @@
 #include "MainWindow.h"
 #include "Game.h"
 #include "FrameTimer.h"
+#include "SpriteCodex.h"
 
 Game::Game( MainWindow& wnd )
 	:
@@ -103,5 +104,8 @@ void Game::ComposeFrame() {
 	p.Draw( gfx );
 	for( const Tile& t : tiles ) {
 		t.DrawWithPadding(2, gfx);
+	}
+	if( gameOver ) {
+		SpriteCodex::DrawGameOver( 100, 100, gfx );
 	}
 }
