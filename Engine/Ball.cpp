@@ -13,30 +13,30 @@ void Ball::Draw( Graphics & gfx ) const {
 	gfx.DrawCircle(pos.x, pos.y, radius, c);
 }
 
-bool Ball::IsCollidingWithWall( const RectF & walls ) {
-	bool isColliding = false;
+int Ball::IsCollidingWithWall( const RectF & walls ) {
+	int result = 0;
 
 	if( pos.x - radius < walls.left ) {
 		ChangeX();
 		pos.x = walls.left + radius; 
-		isColliding = true;
+		result = 1;
 	}
 	if( pos.x + radius >= walls.right ) {
 		ChangeX();
 		pos.x = walls.right - radius;
-		isColliding = true;
+		result = 1;
 	}
 	if( pos.y - radius < walls.top ) {
 		ChangeY();
-		isColliding = true;
+		result = 1;
 		pos.y = walls.top + radius;
 	}
 	if( pos.y + radius >= walls.bottom ) {
 		ChangeY();
-		isColliding = true;
+		result = 2;
 		pos.y = walls.bottom - radius;
 	}
-	return isColliding;
+	return result;
 }
 
 RectF Ball::GetRect() {

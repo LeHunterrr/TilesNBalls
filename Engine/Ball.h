@@ -9,7 +9,7 @@ public:
 	Ball( const Vec2& position, const Vec2& movement, Color color );
 	void Update( float dt );
 	void Draw( Graphics& gfx ) const;
-	bool IsCollidingWithWall(const RectF& walls);
+	int IsCollidingWithWall(const RectF& walls);
 	RectF GetRect();
 	void ChangeX();
 	void ChangeY();
