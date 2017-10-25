@@ -3,7 +3,9 @@
 Pad::Pad( const Vec2 & vec1, float _width, float _height ) :
 	pos( vec1 ),
 	height( _height ),
-	width( _width ) {}
+	width( _width ) {
+	rect = RectF( pos, width, height );
+}
 
 void Pad::Draw( Graphics & gfx ) const {
 	gfx.DrawRect( RectF( pos, width, height ), secondary );
@@ -35,10 +37,19 @@ bool Pad::IsCollidingWithWall( const RectF & walls ) {
 
 bool Pad::IsCOllidingWithBall( Ball & ball ) const {
 	bool isColliding = false;
-	RectF rect( pos, width, height );
+	
 	if( rect.isCollidingWithRect( ball.GetRect() ) ) {
-		isColliding = true;
-		ball.ChangeY();
+		const Vec2 center = ball.GetRect().GetCenter();
+		if( std::signbit( ball.GetVelocity().x ) == signbit( ( ball.GetRect().GetCenter() - rect.GetCenter() ).x ) ) {
+			ball.ChangeY();
+			isColliding = true;
+		} else if( center.x >= rect.left && center.x <= rect.right ) {
+			ball.ChangeY();
+			isColliding = true;
+		} else {
+			ball.ChangeX();
+			isColliding = true;
+		}
 	}
 	return isColliding;
 }

@@ -4,6 +4,7 @@
 #include "Graphics.h"
 #include "Colors.h"
 #include "Ball.h"
+#include "RectF.h"
 
 class Pad {
 public:
@@ -18,6 +19,7 @@ private:
 	Color c = Colors::Blue;
 	Color secondary = Colors::Red;
 	Vec2 pos;
+	RectF rect;
 	float height;
 	float width;
 };
