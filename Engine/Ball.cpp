@@ -50,3 +50,7 @@ void Ball::ChangeX() {
 void Ball::ChangeY() {
 	move.y *= -1;
 }
+
+Vec2 Ball::GetVelocity() const {
+	return move;
+}

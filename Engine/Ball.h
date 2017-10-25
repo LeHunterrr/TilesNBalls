@@ -13,6 +13,7 @@ public:
 	RectF GetRect();
 	void ChangeX();
 	void ChangeY();
+	Vec2 GetVelocity() const;
 private:
 	Vec2 pos;
 	Vec2 move;
