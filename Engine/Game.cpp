@@ -44,13 +44,18 @@ Game::Game( MainWindow& wnd )
 
 void Game::Go() {
 	gfx.BeginFrame();
-	UpdateModel();
+	float timeElapsed = timer.Mark();
+	while( timeElapsed > 0.0f ) {
+		const float dt = std::min( 0.0025f, timeElapsed );
+		UpdateModel(dt);
+		timeElapsed -= dt;
+	}
+	
 	ComposeFrame();
 	gfx.EndFrame();
 }
 
-void Game::UpdateModel() {
-	float dt = timer.Mark();
+void Game::UpdateModel(float dt) {
 	b.Update( dt );
 	p.Update( wnd.kbd, dt );
 
@@ -75,10 +80,11 @@ void Game::UpdateModel() {
 	if( index != -1 ) {
 		soundTile.Play();
 		tiles[ index ].CollideWithBall( b );
+		p.ResetCooldown();
 	}
 
 	if( b.IsCollidingWithWall( border ) ) {
-		
+		p.ResetCooldown();
 	}
 }
 
